@@ -1,0 +1,118 @@
+<h1>Gestionar Libro</h1>
+<div class="card">
+    <div class="card-body">
+            <div class="content">
+                <h1 class="logo">Registar / <span> Editar</span></h1>
+                <div class="contact-wrapper animated bounceInUp">
+                    <div class="contact-form">
+                        <h3></h3>
+                        <form [formGroup]="librosForm" (ngSubmit)="guardar()">
+                            <p>
+                                <label>Título</label>
+                                <input type="text" formControlName="titulo">
+                            </p>
+                            <p>
+                                <label>Fecha de Lanzamiento</label>
+                                <input type="date" formControlName="fechalan">
+                            </p>
+                            <p>
+                                <label>Idioma</label>
+                                <input type="text" formControlName="idioma">
+                            </p>
+                            <p>
+                                <label>Páginas</label>
+                                <input type="number" formControlName="paginas">
+                            </p>
+                            <p class="block">
+                               <label>Descripción</label> 
+                                <textarea name="message" rows="3" formControlName="descripcion"></textarea>
+                            </p>
+                            <p>
+                                <label>Portada</label>
+                                <input type="text" formControlName="portada">
+                            </p>
+                            <p>
+                                <label>Autor</label>
+                                <select formControlName="autor">
+                                    <option selected>Selecciona un Autor</option>
+                                    <option [ngValue]="autor" *ngFor="let autor of autores">{{autor.autor}}</option>
+                                </select>
+                            </p>
+                            <p>
+                                <label>Categoría</label>
+                                <select formControlName="categoria" >
+                                    <option selected>Selecciona una Categoría</option>
+                                    <option [ngValue]="categoria" *ngFor="let categoria of categorias">{{categoria.categoria}}</option>
+                                </select>
+                            </p>
+                            <p>
+                                <label>Editorial</label>
+                                <select formControlName="editorial" class="form-select">
+                                    <option selected>Selecciona una Editorial</option>
+                                    <option [ngValue]="editorial" *ngFor="let editorial of editoriales">{{editorial.editorial}}</option>
+                                </select>
+                            </p>
+                            <p class="block">
+                                <button type="submit"  [disabled]="librosForm.invalid">
+                                    Guardar
+                                </button>
+                            </p>
+                        </form>
+                    </div>
+
+
+                    <div class="contact-info">
+                        <h4>Más Información</h4>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> Librería Piero</li>
+                            <br>
+                            <li><i class="fas fa-phone"></i> (111) 111 111 111</li>
+                            <br>
+                            <li><i class="fas fa-envelope-open-text"></i> Contacto</li>
+                            <br>
+                        </ul>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero provident ipsam necessitatibus repellendus?</p>
+                        <p>Company.com</p>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+    <div class="tabla">
+        <h2>Listar / <span> Libros</span></h2>
+        <table>
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>TÍTULO</th>
+                    <th>FECHA DE LANZAMIENTO</th>
+                    <th>IDIOMA</th>
+                    <th>PÁG</th>
+                    <th>DESCRIPCIÓN</th>
+                    <th>AUTOR</th>
+                    <th>CATEGORÍA</th>
+                    <th>EDITORIAL</th>
+                    <th>OPCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let libro of libros">
+                    <td>{{libro.id}}</td>
+                    <td>{{libro.titulo}}</td>
+                    <td>{{libro.fechalan}}</td>
+                    <td>{{libro.idioma}}</td>
+                    <td>{{libro.paginas}}</td>
+                    <td>{{libro.descripcion}}</td>
+                    <td>{{libro.autor.autor}}</td>
+                    <td>{{libro.categoria.categoria}}</td>
+                    <td>{{libro.editorial.editorial}}</td>
+                    <td class="opciones">
+                        <button type="button" class="btn btn-secondary" (click)="editar(libro)">Editar</button>
+                        <button type="button" class="btn btn-danger" (click)="eliminar(libro)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+
+</div>
